@@ -1,0 +1,219 @@
+/* == RESPONSIVE == */
+@mixin responsive($width) {
+  @if $width == desktop {
+    @media only screen and (max-width: $desktop) { @content; }
+  }
+  @if $width == ipadLandscape {
+    @media only screen and (max-width: $ipadLandscape) { @content; }
+  }
+  @else if $width == ipadPro {
+    @media only screen and (max-width: $ipadPro) { @content; }
+  }
+  @else if $width == ipad {
+    @media only screen and (max-width: $ipad) { @content; }
+  }
+  @else if $width == iphonePlus {
+    @media only screen and (max-width: $iphonePlus) { @content; }
+  }
+  @else if $width == iphone {
+    @media only screen and (max-width: $iphone) { @content; }
+  }
+  @else if $width == iphoneSmall {
+    @media only screen and (max-width: $iphoneSmall) { @content; }
+  }
+  // Non-Retina
+  @else if $width == non-retina {
+    @media screen and (-webkit-max-device-pixel-ratio: 1) { @content; }
+  }
+  // Retina Only
+  @else if $width == retina {
+    @media screen and (-webkit-min-device-pixel-ratio: 2) { @content; }
+  }
+  // Retina Only
+  @else if $width == retina3 {
+    @media screen and (-webkit-min-device-pixel-ratio: 3) { @content; }
+  }
+  // Specific max width
+  @else {
+    @media only screen and (max-width: #{$width}px) { @content; }
+  }
+}
+
+/* == FLEX WIDTH == */
+@mixin flex($flexnumber) {
+  width: #{$flexnumber};
+}
+
+/* == GRID == */
+.grid-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  width: 100%;
+}
+
+.grid-row-max {
+  padding-left: 5vw;
+  padding-right: 5vw;
+  box-sizing: border-box;
+}
+
+@mixin grid-col($col) {
+  box-sizing: border-box;
+
+  @include flex($col-value * $col);
+}
+
+.grid-col {
+  @include flex($col-value);
+
+  box-sizing: border-box;
+
+  &.grid-col-2 {
+    @include flex($col-value * 2);
+  }
+  &.grid-col-3 {
+    @include flex($col-value * 3);
+  }
+  &.grid-col-4 {
+    @include flex($col-value * 4);
+  }
+  &.grid-col-5 {
+    @include flex($col-value * 5);
+  }
+  &.grid-col-6 {
+    @include flex($col-value * 6);
+  }
+  &.grid-col-7 {
+    @include flex($col-value * 7);
+  }
+  &.grid-col-8 {
+    @include flex($col-value * 8);
+  }
+  &.grid-col-9 {
+    @include flex($col-value * 9);
+  }
+  &.grid-col-10 {
+    @include flex($col-value * 10);
+  }
+  &.grid-col-11 {
+    @include flex($col-value * 11);
+  }
+}
+
+.grid-padding-left {
+  padding-left: $gutter;
+
+  @include responsive(ipad) {
+    padding-left: $gutter / 2;
+  }
+
+  @include responsive(iphonePlus) {
+    padding-left: $gutter / 4;
+  }
+}
+
+.grid-padding-right {
+  padding-right: $gutter;
+
+  @include responsive(ipad) {
+    padding-right: $gutter / 2;
+  }
+
+  @include responsive(iphonePlus) {
+    padding-right: $gutter / 4;
+  }
+}
+
+.grid-no-padding-left {
+  padding-left: 0px;
+}
+
+.grid-no-padding-right {
+  padding-right: 0px;
+}
+
+.grid-container-padding-left {
+  padding-left: 5vw;
+  box-sizing: border-box;
+}
+
+.grid-container-padding-right {
+  padding-right: 5vw;
+  box-sizing: border-box;
+}
+
+@function gutter-l($screen) {
+  @if ($screen > $ipad) {
+    @return 38px;
+  } @else if ($screen <= $ipad) and ($screen > $iphonePlus) {
+    @return 14px;
+  } @else if ($screen <= $iphonePlus) {
+    @return 6px;
+  }
+}
+
+@function gutter($screen) {
+  @if ($screen > $iphonePlus) {
+    @return $margin * 2;
+  } @else if ($screen <= $iphonePlus) {
+    @return $margin;
+  }
+}
+
+@mixin grid-cols($col-number, $has-additional-gutter, $screen) {
+  @include responsive($screen);
+
+  $gutter-l-width: gutter-l($screen);
+  $gutter-width: gutter($screen);
+  width: calc((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12);
+  box-sizing: border-box;
+
+  @if ($col-number == 2) and ($has-additional-gutter == false) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 2 + #{$gutter-width * 1});
+  } @else if ($col-number == 2) and ($has-additional-gutter == true) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 2 + #{$gutter-width * 2});
+  } @else if ($col-number == 3) and ($has-additional-gutter == false) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 3 + #{$gutter-width * 2});
+  } @else if ($col-number == 3) and ($has-additional-gutter == true) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 3 + #{$gutter-width * 3});
+  } @else if ($col-number == 4) and ($has-additional-gutter == false) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 4 + #{$gutter-width * 3});
+  } @else if ($col-number == 4) and ($has-additional-gutter == true) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 4 + #{$gutter-width * 4});
+  } @else if ($col-number == 5) and ($has-additional-gutter == false) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 5 + #{$gutter-width * 4});
+  } @else if ($col-number == 5) and ($has-additional-gutter == true) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 5 + #{$gutter-width * 5});
+  } @else if ($col-number == 6) and ($has-additional-gutter == false) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 6 + #{$gutter-width * 5});
+  } @else if ($col-number == 6) and ($has-additional-gutter == true) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 6 + #{$gutter-width * 6});
+  } @else if ($col-number == 7) and ($has-additional-gutter == false) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 7 + #{$gutter-width * 6});
+  } @else if ($col-number == 7) and ($has-additional-gutter == true) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 7 + #{$gutter-width * 7});
+  } @else if ($col-number == 8) and ($has-additional-gutter == false) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 8 + #{$gutter-width * 7});
+  } @else if ($col-number == 8) and ($has-additional-gutter == true) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 8 + #{$gutter-width * 8});
+  } @else if ($col-number == 9) and ($has-additional-gutter == false) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 9 + #{$gutter-width * 8});
+  } @else if ($col-number == 9) and ($has-additional-gutter == true) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 9 + #{$gutter-width * 9});
+  } @else if ($col-number == 10) and ($has-additional-gutter == false) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 10 + #{$gutter-width * 9});
+  } @else if ($col-number == 10) and ($has-additional-gutter == true) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 10 + #{$gutter-width * 10});
+  } @else if ($col-number == 11) and ($has-additional-gutter == false) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 11 + #{$gutter-width * 10});
+  } @else if ($col-number == 11) and ($has-additional-gutter == true) {
+    width: calc(((100vw -  #{$gutter-l-width * 2} - #{$gutter-width * 11}) / 12) * 11 + #{$gutter-width * 11});
+  }
+}

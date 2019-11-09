@@ -1,0 +1,41 @@
+.big-display {
+  font-family: $roboto-black;
+  font-size: 26px;
+  line-height: 39px;
+  color: $darkest-gray;
+}
+
+.title-1 {
+  font-family: $roboto-black;
+  font-size: 18px;
+  line-height: 25px;
+  color: $darkest-gray;
+}
+
+.title-2 {
+  font-family: $roboto-black;
+  font-size: 14px;
+  line-height: 21px;
+  color: $darkest-gray;
+}
+
+.paragraph-regular {
+  font-family: $source-sans-pro-regular;
+  font-size: 40px;
+  // font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+  color: $darkest-gray;
+}
+
+.paragraph-small {
+  font-family: $source-sans-pro-regular;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 0.3px;
+  color: $darkest-gray;
+}
+
+.uppercase { text-transform: uppercase; }
+
+.lowercase {  text-transform: lowercase; }

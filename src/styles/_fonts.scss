@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'Roboto-Black';
+  font-weight: normal;
+  font-style: normal;
+  src: url('/static/fonts/Roboto-Black.eot');
+  src: url('/static/fonts/Roboto-Black.woff2') format('woff2'),
+       url('/static/fonts/Roboto-Black.woff') format('woff'),
+       url('/static/fonts/Roboto-Black.svg') format('svg'),
+       url('/static/fonts/Roboto-Black.eot?#iefix') format('embedded-opentype'),
+}
+
+@font-face {
+  font-family: 'SourceSansPro-Regular';
+  font-display: block;
+  font-weight: normal;
+  font-style: normal;
+  src: url('/static/fonts/SourceSansPro-Regular.eot');
+  src: url('/static/fonts/SourceSansPro-Regular.woff2') format('woff2'),
+       url('/static/fonts/SourceSansPro-Regular.woff') format('woff'),
+       url('/static/fonts/SourceSansPro-Regular.svg#SourceSansPro-Regular') format('svg'),
+       url('/static/fonts/SourceSansPro-Regular.eot?#iefix') format('embedded-opentype');
+}

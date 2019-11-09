@@ -1,0 +1,61 @@
+/* == PAGE == */
+.page {
+  @extend .grid-row;
+  @extend .grid-row-max;
+
+  min-height: calc(100vh - #{$margin * 6});
+  margin-top: $navbar-height;
+  background-color: $white;
+}
+
+.page-fullscreen {
+  @extend .grid-row;
+
+  min-height: calc(100vh - #{$margin * 6});;
+}
+
+
+/* == MIXINS == */
+@mixin hover-transition($transition, $value) {
+  transition: $transition;
+  &:hover {
+    @if type-of($value) == 'number' {
+      opacity: $value;
+    } @else if $transition == $color-transition {
+      color: $value;
+    } @else {
+      background-color: $value;
+    }
+  }
+}
+
+@mixin clickable($transition, $value) {
+  cursor: pointer;
+  transition: $transition;
+  &:hover {
+    @if type-of($value) == 'number' {
+      opacity: $value;
+    } @else if $transition == $color-transition {
+      color: $value;
+    } @else {
+      background-color: $value;
+    }
+  }
+}
+
+/* == FUNCTIONS == */
+@function z($layer) {
+  @if not map-has-key($z-layers, $layer) {
+    @warn "No z-index found in $z-layers map for `#{$layer}`. Property omitted.";
+  }
+
+  @return map-get($z-layers, $layer);
+}
+
+/* == MISCELLANEOUS == */
+.truncate {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,20 @@
+{
+ "short_name": "AWS IU",
+ "name": "AWS Image Upload",
+ "icons": [
+  {
+   "src":"images/manifest-icons/icon192x192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src":"images/manifest-icons/icon512x512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  }
+ ],
+ "start_url": "/?utm_source=homescreen",
+ "background_color": "#FFF",
+ "theme_color": "#2E3235",
+ "display": "standalone"
+}
